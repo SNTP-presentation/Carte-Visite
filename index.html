@@ -912,13 +912,12 @@
                 </div>
               </a>
 
-              <a class="phone-option" href="#" onclick="saveContact(event)">
+              <a class="phone-option" href="SNTP.vcf" download="SNTP.vcf">
                 <div class="phone-option-icon">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                    <circle cx="9" cy="7" r="4"/>
-                    <line x1="19" y1="8" x2="19" y2="14"/>
-                    <line x1="22" y1="11" x2="16" y2="11"/>
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
                   </svg>
                 </div>
                 <div>
@@ -994,34 +993,6 @@
 
     group.classList.toggle('open');
     toggle.setAttribute('aria-expanded', group.classList.contains('open') ? 'true' : 'false');
-  }
-
-  function saveContact(e) {
-    e.preventDefault();
-
-    const vcard = [
-      'BEGIN:VCARD',
-      'VERSION:3.0',
-      'FN:SNTP',
-      'ORG:Société Nationale des Travaux Publics',
-      'TEL;TYPE=WORK,VOICE:0770392704',
-      'EMAIL;TYPE=WORK:communication@sntp.dz',
-      'URL:https://www.sntp.dz',
-      'ADR;TYPE=WORK:;;Route Nationale N°5 El Hamiz BP 39;Bordj El Kiffan;Alger;;Algérie',
-      'END:VCARD'
-    ].join('\\n');
-
-    const blob = new Blob([vcard], { type: 'text/vcard' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-
-    a.href = url;
-    a.download = 'SNTP.vcf';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-
-    URL.revokeObjectURL(url);
   }
 
   document.addEventListener('click', function(e) {
